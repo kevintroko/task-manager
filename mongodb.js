@@ -1,8 +1,8 @@
 // CRUD create read update delete
 
 const chalk = require('chalk');
-const mongodb = require('mongodb');
-const MongoClient = mongodb.MongoClient;
+
+const { MongoClient, ObjectID } = require('mongodb');
 
 const connectionURL = 'mongodb://127.0.0.1:27017';
 const databaseName = 'task-manager';
@@ -15,36 +15,47 @@ MongoClient.connect(connectionURL, { useUnifiedTopology: true }, (error, client)
 
     const db = client.db(databaseName);
 
-    db.collection('tasks').insertMany([
-        {
-            description: 'Learn Node',
-            completed: false
-        }, {
-            description: 'Learn Ionic',
-            completed: false
-        }
-    ], (error, result) => {
-        if (error) {
-            return console.log('Error inserting documents');
-        }
+    // db.collection('users').findOne({
+    //     name: 'Wendy',
+    //     age: 1
+    // }, (error, user) => {
+    //     if (error) {
+    //         return console.log('Error');
+    //     }
 
-        console.log(result.ops);
+    //     console.log(user);
+    // });
+
+    // db.collection('users').find({
+    //     age: 24
+    // }).toArray((error, users) => {
+    //     console.log(users);
+    // });
+
+    // db.collection('users').find({
+    //     age: 24
+    // }).count((error, count) => {
+    //     console.log(count);
+    // });
+
+
+    db.collection('tasks').findOne({
+        _id: ObjectID("5ecc06260d45ed741f24b74d")
+    }, (error, task) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log(task);
     });
 
-    // db.collection('users').insertMany([
-    //     {
-    //         name: 'Wendy',
-    //         age: 23
-    //     }, {
-    //         name: 'Elisa',
-    //         age: 5
-    //     }
-    // ], (error, result) => {
-    //     if (error) {
-    //         return console.log(chalk.red('Unable to insert documents!'));
-    //     }
+    db.collection('tasks').find({
+        completed: false
+    }).toArray(((error, tasks) => {
+        if (error) {
+            console.log(error);
+        }
 
-    //     console.log(result.ops);
-        
-    // });
+        console.log(tasks);
+    }));
+
 });
