@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "chalk": "^4.0.0",
     "mongodb": "^3.5.7"
   },
   "devDependencies": {},
