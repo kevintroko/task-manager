@@ -15,47 +15,15 @@ MongoClient.connect(connectionURL, { useUnifiedTopology: true }, (error, client)
 
     const db = client.db(databaseName);
 
-    // db.collection('users').findOne({
-    //     name: 'Wendy',
-    //     age: 1
-    // }, (error, user) => {
-    //     if (error) {
-    //         return console.log('Error');
+    // db.collection('users').updateOne({
+    //     _id: new ObjectID("5ecbff6337ce204979622299")
+    // }, {
+    //     $inc: {
+    //         age: -14,
     //     }
-
-    //     console.log(user);
+    // }).then((result) => {
+    //     console.log(result);
+    // }).catch((error) => {
+    //     console.log(error);
     // });
-
-    // db.collection('users').find({
-    //     age: 24
-    // }).toArray((error, users) => {
-    //     console.log(users);
-    // });
-
-    // db.collection('users').find({
-    //     age: 24
-    // }).count((error, count) => {
-    //     console.log(count);
-    // });
-
-
-    db.collection('tasks').findOne({
-        _id: ObjectID("5ecc06260d45ed741f24b74d")
-    }, (error, task) => {
-        if (error) {
-            return console.log(error);
-        }
-        console.log(task);
-    });
-
-    db.collection('tasks').find({
-        completed: false
-    }).toArray(((error, tasks) => {
-        if (error) {
-            console.log(error);
-        }
-
-        console.log(tasks);
-    }));
-
 });
