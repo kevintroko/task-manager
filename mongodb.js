@@ -11,9 +11,21 @@ MongoClient.connect(connectionURL, { useUnifiedTopology: true }, (error, client)
     if (error) {
         console.log(chalk.red('Unable to connect to database'));
         return;
-    } 
+    }
 
     const db = client.db(databaseName);
+
+    db.collection('tasks').updateMany({
+        completed: false
+    }, {
+        $set: {
+            completed: true
+        }
+    }).then((result) => {
+        console.log(result);
+    }).catch((error) => {
+        console.log(error);
+    });
 
     // db.collection('users').updateOne({
     //     _id: new ObjectID("5ecbff6337ce204979622299")
