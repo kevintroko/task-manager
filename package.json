@@ -6,7 +6,8 @@
   "dependencies": {
     "chalk": "^4.0.0",
     "mongodb": "^3.5.7",
-    "mongoose": "^5.9.18"
+    "mongoose": "^5.9.18",
+    "validator": "^13.0.0"
   },
   "devDependencies": {},
   "scripts": {
