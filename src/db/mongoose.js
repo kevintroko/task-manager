@@ -8,24 +8,47 @@ mongoose.connect(connectionURL, {
     useUnifiedTopology: true
 });
 
-const User = mongoose.model('User', {
-    name: {
+const Task = mongoose.model('Task', {
+    description: {
         type: String
     },
-    age: {
-        type: Number
+    completed: {
+        type: Boolean
     }
 });
 
-const me = new User({
-    name: 'Kevin',
-    age: 24
+const task = new Task({
+    description: 'Learn Mocha',
+    completed: 'fell'
 });
 
-me.save().then(
+task.save().then(
     () => {
-        console.log(me);
+        console.log(task);
     }
 ).catch((error) => {
     console.log('Error! ', error);
 });
+
+
+// const User = mongoose.model('User', {
+//     name: {
+//         type: String
+//     },
+//     age: {
+//         type: Number
+//     }
+// });
+
+// const me = new User({
+//     name: 'Kevin',
+//     age: 24
+// });
+
+// me.save().then(
+//     () => {
+//         console.log(me);
+//     }
+// ).catch((error) => {
+//     console.log('Error! ', error);
+// });
