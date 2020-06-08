@@ -59,7 +59,7 @@ app.get('/tasks/:id', (req, res) => {
         }
         res.send(task);
     }).catch((e) => {
-        res.status(400).send(e);
+        res.status(500).send(e);
     });
 });
 
@@ -67,7 +67,7 @@ app.get('/tasks', (req, res) => {
     Task.find({}).then((tasks) => {
         res.send(tasks);
     }).catch((e) => {
-        res.status(400).send(e);
+        res.status(500).send(e);
     });
 });
 
