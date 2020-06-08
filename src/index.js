@@ -42,10 +42,30 @@ app.get('/users/:id', (req, res) => {
     });
 });
 
-app.post('/task', (req, res) => {
+app.post('/tasks', (req, res) => {
     const task = new Task(req.body);
     task.save().then(() => {
         res.send(task);
+    }).catch((e) => {
+        res.status(400).send(e);
+    });
+});
+
+app.get('/tasks/:id', (req, res) => {
+    const _id = req.params.id;
+    Task.findById(_id).then((task) => {
+        if (!task) {
+            return res.code(404).send(task);
+        }
+        res.send(task);
+    }).catch((e) => {
+        res.status(400).send(e);
+    });
+});
+
+app.get('/tasks', (req, res) => {
+    Task.find({}).then((tasks) => {
+        res.send(tasks);
     }).catch((e) => {
         res.status(400).send(e);
     });
